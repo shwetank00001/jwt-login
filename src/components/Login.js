@@ -11,17 +11,19 @@ const Login = () => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData(
+      { ...formData, [e.target.name]: e.target.value }
+      )
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/login', formData);
-      console.log(response.data);
+      const response = await axios.post('http://localhost:5000/login', formData)
+      console.log(response.data)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
     
   };
