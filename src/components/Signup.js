@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Signup.css';
+import { Link, useNavigate } from 'react-router-dom'
 
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+
+
+  const nav= useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,21 +25,23 @@ const Signup = () => {
     } catch (error) {
       console.error(error);
     }
+    alert('USER ADDED TO DB')
   };
 
   return (
-    <div>
+    <div className="signup-container">
       <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username:</label>
-          <input type="text" name="username" value={formData.username} onChange={handleChange} />
+          <input type="text" name="username" value={formData.username} onChange={handleChange} required />
         </div>
         <div>
           <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} />
+          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
         </div>
-        <button type="submit">Signup</button>
+        <button className="signup-button" type="submit">Signup</button>
+        <Link to={"/login"}><button className="login-button">Login</button></Link>
       </form>
     </div>
   );
